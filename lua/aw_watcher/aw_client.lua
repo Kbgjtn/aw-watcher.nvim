@@ -87,6 +87,11 @@ function Client.heartbeat(self)
 
     self.last_heartbeat = now
 
+    local file_type = utils.get_filetype()
+    if file_type == "oil" then
+        return
+    end
+
     local body = {
         timestamp = os.date("!%Y-%m-%dT%H:%M:%SZ"),
         duration = 0,
@@ -94,7 +99,7 @@ function Client.heartbeat(self)
             file = utils.get_filename(),
             project = vim.b.project_name,
             branch = vim.b.branch_name,
-            language = utils.get_filetype(),
+            language = file_type,
         },
     }
 
