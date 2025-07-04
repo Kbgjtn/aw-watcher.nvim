@@ -5,6 +5,10 @@ local function get_filename()
         path = path:gsub("^oil://", "")
     end
 
+    if path:match("^fugitive://") then
+        path = path:gsub("^fugitive://", "")
+    end
+
     return path
 end
 
