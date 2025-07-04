@@ -88,11 +88,8 @@ function Client.heartbeat(self)
     self.last_heartbeat = now
 
     local file_type = utils.get_filetype()
-    if file_type == "oil" then
-        return
-    end
-
-    if not vim.b.project_name then
+    local file_name = utils.get_filename()
+    if file_name == "" then
         return
     end
 
