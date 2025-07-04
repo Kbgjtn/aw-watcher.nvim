@@ -15,10 +15,14 @@ end
 local function get_filetype() return vim.bo.filetype end
 
 local function set_project_name()
+    vim.b.project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
     local current_file_path = vim.api.nvim_buf_get_name(0)
     if current_file_path:match("^oil://") then
         current_file_path = current_file_path:gsub("^oil://", "")
-        return nil
+    end
+
+    if current_file_path:match("^fugitive://") then
+        current_file_path = current_file_path:gsub("^fugitive://", "")
     end
 
     -- Traverse parent directories to find Git root or worktree
