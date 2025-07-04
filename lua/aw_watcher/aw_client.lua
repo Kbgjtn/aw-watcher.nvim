@@ -92,6 +92,10 @@ function Client.heartbeat(self)
         return
     end
 
+    if not vim.b.project_name then
+        return
+    end
+
     local body = {
         timestamp = os.date("!%Y-%m-%dT%H:%M:%SZ"),
         duration = 0,
