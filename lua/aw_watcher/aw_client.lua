@@ -93,6 +93,11 @@ function Client.heartbeat(self)
         return
     end
 
+    local is_folder = vim.fn.isdirectory(file_name) == 1
+    if is_folder then
+        return
+    end
+
     local body = {
         timestamp = os.date("!%Y-%m-%dT%H:%M:%SZ"),
         duration = 0,
